@@ -6,7 +6,7 @@ const {
 
 const router = express.Router();
 
-router.get("/places", getPlacesList);
+router.get("/place-list", getPlacesList);
 
 router.post("/add-place", addPlaces);
 

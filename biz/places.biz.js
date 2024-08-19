@@ -1,15 +1,18 @@
-const winterPlaces = require("../models/winter.model");
-const { db } = require("../models/winter.model");
+const { getModel } = require("../helpers/places.helper");
 
-exports.getListOfPlacesBySeason = () => {
+exports.getListOfPlacesBySeason = async (req) => {
   try {
-  } catch (error) {}
+    const model = getModel(req.query);
+    const result = await model.find();
+    return result;
+  } catch (error) {
+    return false;
+  }
 };
 
 exports.addPlacesBySeason = async (req) => {
   try {
-    console.log(req.body, req.body.season);
-    await this.getModel(req.body.season).create({
+    await getModel(req.body.season).create({
       ...req.body,
     });
     return true;
@@ -17,16 +20,4 @@ exports.addPlacesBySeason = async (req) => {
     console.log(error);
     return false;
   }
-};
-
-exports.getModel = (season) => {
-  let model;
-  switch (season) {
-    case "winter":
-      model = winterPlaces;
-      break;
-    default:
-      break;
-  }
-  return model;
 };
