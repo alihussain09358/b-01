@@ -2,7 +2,7 @@ const { getModel } = require("../helpers/places.helper");
 
 exports.getListOfPlacesBySeason = async (req) => {
   try {
-    const model = getModel(req.query);
+    const model = getModel(req.query.season);
     const result = await model.find();
     return result;
   } catch (error) {
